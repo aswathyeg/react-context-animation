@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import cityImg from '../assets/women.jpg';
+import cityImg from '../assets/city.jpg';
 import heroImg from '../assets/hero.png';
 
 export default function WelcomePage() {
