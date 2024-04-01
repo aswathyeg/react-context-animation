@@ -9,6 +9,6 @@ export default function Modal({ title, children, onClose }) {
         {children}
       </dialog>
     </>,
-    document.getElementById('modal')
+    document.getElementById('root')
   );
 }
