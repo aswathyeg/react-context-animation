@@ -32,6 +32,16 @@ body {
   filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
 
 }
+#cta-link{
+  text-decoration: none;
+font-size: x-large;
+color:#0f61ef;
+text-shadow: #414956 ;
+font-weight: bold;
+}
+#cta-link:hover {
+  color: white;
+}
 main {
   width: 80%;
   max-width: 40rem;
@@ -78,6 +88,7 @@ main {
    last in the HTML code will be shown on top.*/
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   text-align: center;
+  font-size: x-large;
 }
 #new-challenge label {
   display: block;
