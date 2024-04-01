@@ -64,14 +64,25 @@ main {
   object-fit: contain;
 }
 
-.header{
+
+#main-header{
   display: flex;
-  justify-content: space-around;
-  margin-top: 5%;
+  justify-content: space-between;
+  align-items: center;
+  width:80%;
+  max-width: 40rem;
+  margin: 2rem auto;
+
 }
-.buttonAdd{
-  background-color: blueviolet;
-  width:10%;
+
+.button{
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: #0f61ef;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
 }
 #welcome-header{
