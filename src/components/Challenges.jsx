@@ -1,36 +1,59 @@
 import { useContext, useState } from 'react';
-import ChallengeItem from "./ChallengeItems";
-import ChallengeTabs from "./ChallengeTabs";
+
 import { ChallengesContext } from '../store/challenges-context.jsx';
-export default function Challenges(){
-    const [selectedType, setSelectedType] = useState('active');
-    const { challenges } = useContext(ChallengesContext);
-    const [expanded, setExpanded] = useState(null);
-    function handleSelect(newType){
-        setSelectedType(newType)
-    }
+import ChallengeItem from './ChallengeItems.jsx';
+import ChallengeTabs from './ChallengeTabs.jsx';
 
-    const filteredChallenges={
-        active:challenges.filter((challenge)=>challenge.status==='active'),
-        completed:challenges.filter((challenge)=>challenge.status==='completed'),
-        failed:challenges.filter((challenge)=>challenge.status==='failed')
+export default function Challenges() {
+  const { challenges } = useContext(ChallengesContext);
+  const [selectedType, setSelectedType] = useState('active');
+  const [expanded, setExpanded] = useState(null);
 
-    }
-    const displayedChallenges = filteredChallenges[selectedType];
+  function handleSelectType(newType) {
+    setSelectedType(newType);
+  }
 
-    return(
-    <ChallengeTabs
-    onSelect={handleSelect}
-    selectedType={selectedType}
-    challenge={filteredChallenges}
-    >
-    
-    
-    
+  function handleViewDetails(id) {
+    setExpanded((prevId) => {
+      if (prevId === id) {
+        return null;
+      }
 
-        <ChallengeItem>
+      return id;
+    });
+  }
 
-        </ChallengeItem>
-    </ChallengeTabs>
-    )
+  const filteredChallenges = {
+    active: challenges.filter((challenge) => challenge.status === 'active'),
+    completed: challenges.filter(
+      (challenge) => challenge.status === 'completed'
+    ),
+    failed: challenges.filter((challenge) => challenge.status === 'failed'),
+  };
+
+  const displayedChallenges = filteredChallenges[selectedType];
+
+  return (
+    <div id="challenges">
+      <ChallengeTabs
+        challenges={filteredChallenges}
+        onSelectType={handleSelectType}
+        selectedType={selectedType}
+      >
+        {displayedChallenges.length > 0 && (
+          <ol className="challenge-items">
+            {displayedChallenges.map((challenge) => (
+              <ChallengeItem
+                key={challenge.id}
+                challenge={challenge}
+                onViewDetails={() => handleViewDetails(challenge.id)}
+                isExpanded={expanded === challenge.id}
+              />
+            ))}
+          </ol>
+        )}
+        {displayedChallenges.length === 0 && <p>No challenges found.</p>}
+      </ChallengeTabs>
+    </div>
+  );
 }
